@@ -18,7 +18,7 @@ const ImageUpscaler = () => {
           const minHeight = 1200;
           const scaleWidth = minWidth / img.width;
           const scaleHeight = minHeight / img.height;
-          const scaleFactor = Math.max(scaleWidth, scaleHeight, 1);
+          const scaleFactor = Math.max(scaleWidth, scaleHeight, 2);
 
           const newWidth = Math.round(img.width * scaleFactor);
           const newHeight = Math.round(img.height * scaleFactor);
@@ -47,12 +47,17 @@ const ImageUpscaler = () => {
     const img = new Image();
     img.src = image.src;
     img.onload = () => {
-      canvas.width = image.upscaledSize.width;
-      canvas.height = image.upscaledSize.height;
+      const offscreenCanvas = document.createElement("canvas");
+      const offscreenCtx = offscreenCanvas.getContext("2d");
 
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = "high";
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      offscreenCanvas.width = image.upscaledSize.width;
+      offscreenCanvas.height = image.upscaledSize.height;
+      
+      offscreenCtx.imageSmoothingEnabled = true;
+      offscreenCtx.imageSmoothingQuality = "high";
+      offscreenCtx.drawImage(img, 0, 0, offscreenCanvas.width, offscreenCanvas.height);
+      
+      ctx.drawImage(offscreenCanvas, 0, 0);
     };
   };
 
@@ -75,7 +80,6 @@ const ImageUpscaler = () => {
 
   return (
     <div className="image-upscaler">
-      {/* Buttons at the top */}
       <div className="top-buttons">
         <label className="upload-label">
           Upload Images
