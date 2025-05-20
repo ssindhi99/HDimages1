@@ -14,8 +14,8 @@ const ImageUpscaler = () => {
 
       return new Promise((resolve) => {
         img.onload = () => {
-          const minWidth = 2048;
-          const minHeight = 1536;
+          const minWidth = 1610;
+          const minHeight = 1210;
           const scaleWidth = minWidth / img.width;
           const scaleHeight = minHeight / img.height;
           const scaleFactor = Math.max(scaleWidth, scaleHeight, 1);
