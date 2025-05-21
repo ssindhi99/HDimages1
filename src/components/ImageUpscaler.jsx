@@ -85,6 +85,7 @@ const ImageUpscaler = () => {
     });
   };
 
+  
   return (
     <div
       className="image-upscaler"
