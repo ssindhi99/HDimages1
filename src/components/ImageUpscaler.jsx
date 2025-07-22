@@ -9,7 +9,7 @@ const QUALITY_LABELS = {
 const MIN_GOOD_WIDTH = 1920;
 const MIN_GOOD_HEIGHT = 1080;
 const MIN_GOOD_MP = 2;
-const MIN_IMAGE_PX = 1500;
+const MIN_IMAGE_PX = 1536;
 
 function getTargetSize(width, height) {
   let scaleW = MIN_GOOD_WIDTH / width;
